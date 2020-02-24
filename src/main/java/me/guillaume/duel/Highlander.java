@@ -1,40 +1,31 @@
 package me.guillaume.duel;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+public class Highlander extends Warrior<Highlander> {
 
-public class Highlander implements Warrior {
+    public boolean isBerserk() {
+        return isBerserk;
+    }
 
-    private int hitPoints;
-    private List<String> equipment;
+    private boolean isBerserk;
+
+    public int getInitialHP() {
+        return initialHP;
+    }
+
+    private int initialHP = 150;
 
     public Highlander(String veteran) {
+        this();
+        if (veteran.equals("Veteran")) {
+            this.isBerserk = true;
+        }
     }
 
     public Highlander() {
-            this.setHitPoints(150);
-            this.equipment=new ArrayList<>();
+        this.equip(Equipment.GREATSWORD.getName());
+        this.setHitPoints(initialHP);
+        this.setDamage(Equipment.GREATSWORD.getValue());
     }
 
 
-
-    public int getHitPoints() {
-        return hitPoints;
-    }
-
-
-    @Override
-    public List<String> getEquipment() {
-        return Collections.emptyList();
-    }
-
-    public void setHitPoints(int hitPoints) {
-        this.hitPoints = Math.max(hitPoints, 0);
-    }
-
-
-    public int hitPoints() {
-        return hitPoints;
-    }
 }
